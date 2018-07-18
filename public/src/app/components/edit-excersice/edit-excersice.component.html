@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Edit {{excersice.name | capitalize }}</h2>
+    <form method="post" (ngSubmit)="save()" class="mt-4 add-excersice">
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input type="text" class="form-control" id="title" placeholder="Type a name" name="title" [(ngModel)]="excersice.name" >
+      </div>
+      <div class="form-group">
+        <label for="rest">Resting time</label>
+        <input type="text" class="form-control" name="rest" [(ngModel)]="excersice.restingTime" >
+      </div>
+      <div class="form-group">
+        <label for="weight">Current weight</label>
+         <input type="text" class="form-control" name="weight" [(ngModel)]="excersice.lastWeightUsed" >
+      </div>
+      <div class="form-group">
+        <label for="sets">Sets</label>
+        <input type="text" class="form-control" name="sets" [(ngModel)]="excersice.sets" >
+      </div>
+      <div class="form-group">
+        <label for="reps">Reps</label>
+        <input type="text" class="form-control" name="reps" [(ngModel)]="excersice.reps" >
+      </div>
+      <div class="form-group">
+        <label for="difficulty">Any comments?</label>
+        <input type="text" class="form-control" name="difficulty" [(ngModel)]="excersice.difficulty" >
+      </div>
+      <div class="form-group row">
+        <div class="input-group">
+          <button type="submit" class="btn btn-secondary save-btn">Save</button>
+          <button type="button" (click)="cancel()" class="btn btn-outline-secondary">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>

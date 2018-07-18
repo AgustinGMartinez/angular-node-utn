@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="subtitle">
+    <h2>Add Workout</h2>
+  </div>
+
+  <form method="post" (ngSubmit)="add()" #formtvshow="ngForm" class="mt-4 add-workout">
+    <div class="form-group">
+      <label for="title">Name</label>
+      <input type="text" class="form-control" id="title" placeholder="Type a name" name="title" [(ngModel)]="workout.name" >
+    </div>
+    <div class="form-group">
+      <label>Excersices</label>
+      <button type="button" class="btn btn-link" [routerLink]="['/add-excersice']">Add new excersice</button>
+      <label *ngFor="let ex of excersices; let i = index" class="excersice"><input type="checkbox"(change)="excersices[i].selected = !excersices[i].selected">{{ex.name}}</label>
+    </div>
+    <div class="form-group row">
+      <div class="input-group">
+          <button type="submit" class="btn btn-secondary save-btn">Save</button>
+          <button type="button" (click)="cancel()" class="btn btn-outline-secondary">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,6 @@
+<div *ngIf="check.timer.activated" class="requiredBottomSpace"></div>
+<div *ngIf="check.timer.activated" class="timer-bar">
+  <h3>{{check.timer.passed | number:'1.2-2'}} / {{check.timer.limit | number:'1.1-1'}}s</h3>
+  <div (click)="cancelTimer()"><h3>X</h3></div>
+  <div *ngIf="check.timer.activated" class="timer-bar-overlay" [ngStyle]="{'width': timeWidth}"></div>
+</div>

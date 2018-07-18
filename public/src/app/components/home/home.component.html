@@ -1,0 +1,25 @@
+<div class="subtitle rutines-overview">
+  <h2>Workouts</h2>
+</div>
+
+<div class="container">
+
+  <div *ngIf="areWorkouts">
+    <p *ngIf="!tracking">Select a workout to start growing those muscles!</p>
+    <p *ngIf="tracking">Now tracking: {{tracked}}</p>
+    <strong class="home-strong">Or set a
+    <button [routerLink]="['/add-workout']" type="button" class="btn btn-secondary home-btn">New workout</button></strong>
+
+    <ul class="workout-list">
+      <li class="workout" *ngFor="let workout of workouts; let i = index" (click)="work(workout._id)">
+        <h3 class="workout-name">{{workout.name | uppercase }}</h3>
+        <h4 class="workout-details">Ejercicios: <small *ngFor="let excersice of workout.details, let i2 = index">{{ i2 == workout.details.length-1 ? (excersice + ".") : (excersice + ", ") }} </small></h4>
+        <p class="date-tracker">Last time done: <span>{{workout.lastDone | date:'fullDate'}}</span></p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!areWorkouts">
+    <p>There are no workouts yet, create your first workout to start working out!</p>
+    <button style="display: block; margin: auto !important;" [routerLink]="['/add-workout']" type="button" class="btn btn-secondary home-btn">Add my first workout</button>
+  </div>
+</div>

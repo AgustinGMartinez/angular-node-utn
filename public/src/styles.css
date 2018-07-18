@@ -1,0 +1,318 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import './assets/checkboxes.css';
+
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left: 2rem;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav .navbar {
+    padding: 0.2rem 1rem
+}
+
+nav .navbar-brand h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0 !important;
+}
+
+nav .navbar-toggler {
+    font-size: 1rem;
+}
+
+.subtitle > h1, .subtitle > h2 {
+    font-size: 1.5rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+    color: #222222;
+}
+
+.subtitle {
+    padding: 0.5rem !important;
+    padding-top: 1rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtitle h2 {
+    text-align: center;
+}
+
+.workout {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.workout-list .workout .workout-details {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.workout-list .workout .workout-details small {
+    font-weight: normal;
+}
+
+.workout-list .workout .date-tracker {
+    font-size: 0.8rem;
+}
+
+.workout-list .workout .date-tracker span {
+    color: green;
+}
+
+.home-strong {
+    text-transform: capitalize;
+    font-style: italic;
+    display: inline-block !important;
+    margin: 0 0.5rem 1rem !important;
+}
+
+.home-btn {
+    margin: 0 0.5rem 1rem !important;
+    display: inline-block;
+    background: #343a40!important;
+}
+
+.home-btn:hover {
+    background: #ffffff !important;
+    color: #343a40!important;
+}
+
+.save-btn {
+    margin: auto 1rem auto auto !important;
+    background: #343a40!important;
+}
+
+.save-btn:hover {
+    background: #ffffff !important;
+    color: #343a40!important;
+}
+
+.save-btn + button {
+    margin: auto auto auto 0 !important;
+}
+
+.save-btn + .btn-sm {
+    float:right;
+}
+
+.workout {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.excersice {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.true-excersice {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.excersice h4 {
+    font-size: 1rem;
+}
+
+.excersice h5 {
+    font-size: 0.8rem;
+}
+
+.true-excersice h4 {
+    font-size: 1rem;
+}
+
+.true-excersice h5 {
+    font-size: 0.8rem;
+}
+
+.centered-btn {
+    display: block;
+    margin: 0 auto 1rem !important;
+}
+
+.working .workout-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.working .workout-name {
+    font-size: 1rem;
+}
+
+.working .workout-name, .working .workout-details {
+    display: inline-block !important;
+}
+
+.working .workout-body {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(calc(10vw),calc(10vw));
+  grid-gap: 1rem;
+  margin: 1rem auto;
+}
+
+.working .circle-container {
+}
+
+.circle {
+    background: gray;
+    border-radius: 50%;
+    width: calc(10vw);
+    height: 100%;
+}
+
+.done {
+  background: #3D9995;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  /* transition: background 0.35s ease; */
+}
+
+.done:after {
+  content: "✓";
+  height: 100%;
+  font-size: 7vw;
+  color: #f2f2f2;
+}
+
+.working {
+  padding-bottom: 1rem;
+}
+
+.finish-btn {
+  background: tomato !important;
+  border-color: white;
+}
+
+.finish-btn:hover {
+  border: 1px solid tomato !important;
+  color: tomato !important;
+}
+
+.workout-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.workout-buttons button {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.workout .difficulty {
+  color: #777777;
+  display: inline;
+  margin-bottom: 0 !important;
+}
+
+.workout .workout-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.workout .workout-footer .btn-link {
+  padding: 0 !important;
+}
+
+.requiredBottomSpace {
+  height: 20vw;
+  width: 100%;
+}
+
+.timer-bar {
+  height: 20vw;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #222222;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem 1rem 1rem;
+}
+
+.timer-bar h3, .timer-bar div:not(.timer-bar-overlay) {
+  z-index: 9999;
+  color: #f2f2f2 !important;
+}
+
+.timer-bar div:not(.timer-bar-overlay) {
+  border-radius: 50%;
+  border-color: #f2f2f2;
+  border: 0px solid;
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  box-sizing: content-box;
+}
+
+.timer-bar-overlay {
+  height: 20vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #3D9995;
+  z-index: 1;
+}
+
+.edit-workout .btn-link {
+  width: 70%;
+}
+
+.excersice:first-of-type {
+  margin-top: 1rem;
+}
+
+.excersice {
+  background: #f2f2f2;
+  width: 70%;
+  display: block !important;
+  margin: 1rem auto;
+}
+
+.delete-workout {
+  float: right;
+  width: initial !important;
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.alert {
+  width: 100%;
+  height: 15vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  line-height: 10vw;
+}
+
+.alert.success-alert {
+  background: green;
+  color: #ffffff;
+}
+
+.alert.error-alert {
+  background: darkred;
+  color: #ffffff;
+}

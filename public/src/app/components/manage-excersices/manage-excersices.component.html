@@ -1,0 +1,22 @@
+<div class="subtitle">
+  <h2>Manage Excersices</h2>
+</div>
+
+<button [routerLink]="['/add-excersice']" type="button" class="btn btn-secondary home-btn centered-btn">New excersice</button>
+
+<div class="container">
+
+    <ul class="excersice-list">
+      <li class="true-excersice" *ngFor="let ex of excersices; let i = index">
+        <h4 class="excersice-name">{{ex.name | uppercase }}</h4>
+        <h5>Last Weight: {{ex.lastWeightUsed}} kg</h5>
+        <h5>Resting Time: {{ex.restingTime}} seconds</h5>
+        <h5>Reps: {{ex.reps}}</h5>
+        <h5>Sets: {{ex.sets}}</h5>
+        <h5>Difficulty: {{ex.difficulty}}</h5>
+        <button class="btn btn-secondary save-btn btn-sm" (click)="edit(ex._id)">Edit</button>
+        <button type="button" (click)="delete(ex._id, ex.name)" class="btn btn-outline-secondary btn-sm">Delete</button>
+      </li>
+    </ul>
+
+</div>
