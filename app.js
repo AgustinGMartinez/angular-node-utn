@@ -26,8 +26,9 @@ app.get('/', function(req, res) {
 
 routes = require('./routes/api')(app);
 
-// mongoose.connect('mongodb://localhost:27017/workouts',{ useNewUrlParser: true }, function(err, res) {
-mongoose.connect('mongodb://zhuclam:fjv2ibvgmkl147@ds139921.mlab.com:39921/agustin-utn',{ useNewUrlParser: true }, function(err, res) {
+let db = "mongodb://zhuclam:fjv2ibvgmkl147@ds139921.mlab.com:39921/agustin-utn" || "mongodb://localhost:27017/workouts";
+
+mongoose.connect(db ,{ useNewUrlParser: true }, function(err, res) {
 	if(err) {
 		console.log('ERROR: connecting to Database. ' + err);
 	} else {
