@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "cd public && npm install && cd .."
+    "postinstall": "cd public && npm i && ng build --prod"
   },
   "engines": {
     "node": "8.9.4",
