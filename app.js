@@ -34,6 +34,6 @@ mongoose.connect('mongodb://localhost:27017/workouts',{ useNewUrlParser: true },
 	}
 });
 
-server.listen(port, function() {
+server.listen(port, "0.0.0.0", function() {
   console.log("Node server running on http://localhost:" + port);
 });
