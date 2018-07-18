@@ -18,7 +18,7 @@ export class apiService {
   constructor(public http: HttpClient, public alerts: MessagesService) { }
 
   getWorkouts(callback: (data) => void) {
-    let url = "/workouts";
+    let url = window.location.protocol + '//' + window.location.host +  "/workouts";
 
     return this.http.get(url)
     .subscribe(res => {
@@ -28,7 +28,7 @@ export class apiService {
   }
 
   getExcersices(callback: (data) => void) {
-    let url = "/excersices";
+    let url = window.location.protocol + '//' + window.location.host +  "/excersices";
 
     return this.http.get(url)
     .subscribe(res => {
@@ -38,7 +38,7 @@ export class apiService {
   }
 
   newWorkout(workout, callback: (data) => void) {
-    let url = "/workouts";
+    let url = window.location.protocol + '//' + window.location.host +  "/workouts";
 
     return this.http.post(url, workout)
     .subscribe(res => {
@@ -51,7 +51,7 @@ export class apiService {
   }
 
   newExcersice(excersice, callback: (data) => void) {
-    let url = "/excersices";
+    let url = window.location.protocol + '//' + window.location.host +  "/excersices";
 
     return this.http.post(url, excersice)
     .subscribe(res => {
@@ -64,7 +64,7 @@ export class apiService {
   }
 
   updateWorkout(id, workout, callback: (data) => void) {
-    let url = "/workout/" + id;
+    let url = window.location.protocol + '//' + window.location.host +  "/workout/" + id;
 
     return this.http.put(url, workout)
     .subscribe(res => {
@@ -77,7 +77,7 @@ export class apiService {
   }
 
   updateExcersice(id, excersice, callback: (data) => void) {
-    let url = "/excersice/" + id;
+    let url = window.location.protocol + '//' + window.location.host +  "/excersice/" + id;
 
     return this.http.put(url, excersice)
     .subscribe(res => {
@@ -90,7 +90,7 @@ export class apiService {
   }
 
   deleteWorkout(id, callback: (data) => void) {
-    let url = "/workout/" + id;
+    let url = window.location.protocol + '//' + window.location.host + "/workout/" + id;
 
     return this.http.delete(url)
     .subscribe(res => {
@@ -103,7 +103,7 @@ export class apiService {
   }
 
   deleteExcersice(id, callback: (data) => void) {
-    let url = "/excersice/" + id;
+    let url = window.location.protocol + '//' + window.location.host + "/excersice/" + id;
 
     return this.http.delete(url)
     .subscribe(res => {
