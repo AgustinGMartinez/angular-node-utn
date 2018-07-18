@@ -18,7 +18,7 @@ export class apiService {
   constructor(public http: HttpClient, public alerts: MessagesService) { }
 
   getWorkouts(callback: (data) => void) {
-    let url = "https://agustin-utn.herokuapp.com/workouts";
+    let url = "https://ags-utn.herokuapp.com/workouts";
 
     return this.http.get(url)
     .subscribe(res => {
@@ -28,7 +28,7 @@ export class apiService {
   }
 
   getExcersices(callback: (data) => void) {
-    let url = "https://agustin-utn.herokuapp.com/excersices";
+    let url = "https://ags-utn.herokuapp.com/excersices";
 
     return this.http.get(url)
     .subscribe(res => {
@@ -38,7 +38,7 @@ export class apiService {
   }
 
   newWorkout(workout, callback: (data) => void) {
-    let url = "https://agustin-utn.herokuapp.com/workouts";
+    let url = "https://ags-utn.herokuapp.com/workouts";
 
     return this.http.post(url, workout)
     .subscribe(res => {
@@ -51,7 +51,7 @@ export class apiService {
   }
 
   newExcersice(excersice, callback: (data) => void) {
-    let url = "https://agustin-utn.herokuapp.com/excersices";
+    let url = "https://ags-utn.herokuapp.com/excersices";
 
     return this.http.post(url, excersice)
     .subscribe(res => {
@@ -64,7 +64,7 @@ export class apiService {
   }
 
   updateWorkout(id, workout, callback: (data) => void) {
-    let url = "https://agustin-utn.herokuapp.com/workout/" + id;
+    let url = "https://ags-utn.herokuapp.com/workout/" + id;
 
     return this.http.put(url, workout)
     .subscribe(res => {
@@ -77,7 +77,7 @@ export class apiService {
   }
 
   updateExcersice(id, excersice, callback: (data) => void) {
-    let url = "https://agustin-utn.herokuapp.com/excersice/" + id;
+    let url = "https://ags-utn.herokuapp.com/excersice/" + id;
 
     return this.http.put(url, excersice)
     .subscribe(res => {

@@ -4,9 +4,7 @@
   "description": "App para seguir rutinas de gimnasio",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "cd public && npm i @angular/cli -g && npm i && ng build --prod && cd .."
-  },
+    "test": "echo \"Error: no test specified\" && exit 1" },
   "engines": {
     "node": "8.9.4",
     "npm": "6.1.0"
