@@ -7,13 +7,13 @@ import { Output, EventEmitter  } from '@angular/core';
 export class TrackerService {
 
   //dynamic data for all the application
-  tracking:any = window.localStorage.getItem('tracking') || false;
+  tracking:any = localStorage.getItem('tracking') || false;
   //only to store excersices property of workout component
-  excersices:any[] = JSON.parse(window.localStorage.getItem('excersices')) || [];
+  excersices:any[] = JSON.parse(localStorage.getItem('excersices')) || [];
   //only to store numbers property of workout component
-  workoutNumbers:any[] = JSON.parse(window.localStorage.getItem('workoutNumbers')) || [];
+  workoutNumbers:any[] = JSON.parse(localStorage.getItem('workoutNumbers')) || [];
   //only to store the id of the workout
-  id:any = window.localStorage.getItem('tracked-id') || "";
+  id:any = localStorage.getItem('tracked-id') || "";
 
   timer = {
     activated: false,
@@ -44,22 +44,21 @@ export class TrackerService {
   }
 
   save(tracking, trackedId, excersices, workoutNumbers) {
-    window.localStorage.setItem('tracking', tracking);
-    window.localStorage.setItem('tracked-id', trackedId);
-    window.localStorage.setItem('excersices', JSON.stringify(excersices));
-    window.localStorage.setItem('workoutNumbers', JSON.stringify(workoutNumbers));
-
+    localStorage.setItem('tracking', tracking);
+    localStorage.setItem('tracked-id', trackedId);
+    localStorage.setItem('excersices', JSON.stringify(excersices));
+    localStorage.setItem('workoutNumbers', JSON.stringify(workoutNumbers));
   }
 
   update() {
-    this.tracking = window.localStorage.getItem('tracking') || false;
-    this.excersices = JSON.parse(window.localStorage.getItem('excersices')) || [];
-    this.workoutNumbers = JSON.parse(window.localStorage.getItem('workoutNumbers')) || [];
-    this.id = window.localStorage.getItem('tracked-id') || "";
+    this.tracking = localStorage.getItem('tracking') || false;
+    this.excersices = JSON.parse(localStorage.getItem('excersices')) || [];
+    this.workoutNumbers = JSON.parse(localStorage.getItem('workoutNumbers')) || [];
+    this.id = localStorage.getItem('tracked-id') || "";
   }
 
   resetWorkout() {
-    window.localStorage.clear();
+    localStorage.clear();
     this.tracking = false;
     this.excersices = [];
     this.workoutNumbers = [];

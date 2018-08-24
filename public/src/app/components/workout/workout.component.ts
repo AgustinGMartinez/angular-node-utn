@@ -15,7 +15,7 @@ export class WorkoutComponent implements OnInit, OnDestroy {
   id:string = '';
   workout:any = {}
   excersices:any[] = [];
-  numbers:any[] = [];
+  numbers:any = {};
   allDone:boolean = false;
   loading:boolean = true;
 
@@ -48,7 +48,7 @@ export class WorkoutComponent implements OnInit, OnDestroy {
                   for (let i=0;i<ex.sets;i++) {
                     temp.push(i);
                   }
-                  this.numbers.push(temp);
+                  this.numbers[ex._id] = temp;
                 }
               }
             });
@@ -80,7 +80,7 @@ export class WorkoutComponent implements OnInit, OnDestroy {
       let readyToGo = true;
 
       for (let i in this.excersices) {
-        if (this.excersices[i].done.length !== this.excersices[i].sets) readyToGo = false;
+        if (this.excersices[i].done.length < this.excersices[i].sets) readyToGo = false;
       }
 
       this.allDone = readyToGo;
@@ -96,17 +96,25 @@ export class WorkoutComponent implements OnInit, OnDestroy {
     this.router.navigate(['excersice/edit',id]);
   }
 
-  checkAll() {
+  setAll() {
+    // check if current workout or wrong workout
+    if (this.tracker.id !== "" && this.tracker.id !== this.id && this.tracker.tracking) {
+      alert("Finish or quit the started workout first!");
+      return;
+    }
+    // do the job
     if (confirm("Are you sure you want to mark all sets as finished?")) {
       for (let excersice of this.excersices) {
         excersice.done = [];
-
         for (let i = 1; i <= excersice.sets; i++) {
           excersice.done.push(i);
         }
       }
     }
+    // save the new status
+    this.tracker.resetTimer();
     this.tracker.save(true, this.id, this.excersices, this.numbers);
+    this.tracker.update();
     this.checkAllDone();
   }
 
@@ -132,7 +140,7 @@ export class WorkoutComponent implements OnInit, OnDestroy {
     this.tracker.resetWorkout();
     this.tracker.resetTimer();
     this.tracker.update();
-    let workout =  this.workout;
+    let workout = this.workout;
     workout.lastDone = Date.now();
     this.api.updateWorkout(this.id, workout, data => {
       this.router.navigate(['home']);
