@@ -5,10 +5,17 @@
 <div class="container">
 
   <div *ngIf="areWorkouts">
-    <p *ngIf="!tracking">Select a workout to start growing those muscles!</p>
-    <p *ngIf="tracking">Now tracking: {{tracked}}</p>
-    <strong class="home-strong">Or set a
-    <button [routerLink]="['/add-workout']" type="button" class="btn btn-secondary home-btn">New workout</button></strong>
+    <div *ngIf="!tracking">
+      <p>Select a workout to start growing those muscles!</p>
+      <strong class="home-strong">Or set a
+      <button [routerLink]="['/add-workout']" type="button" class="btn btn-secondary home-btn">New workout</button></strong>
+    </div>
+    <div *ngIf="tracking">
+      <p class="home-tracking-text">Now tracking: {{trackedWorkout}}</p>
+      <button type="button" (click)="quitWork()" class="btn btn-outline-secondary">Quit tracking</button>
+    </div>
+
+    <figure *ngIf="loading" class="d-block mx-auto"><img width='100%' src="../../../assets/img/preloader.gif" alt="preloader" /></figure>
 
     <ul class="workout-list">
       <li class="workout" *ngFor="let workout of workouts; let i = index" (click)="work(workout._id)">

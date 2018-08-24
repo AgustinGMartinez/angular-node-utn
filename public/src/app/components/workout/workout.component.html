@@ -5,13 +5,16 @@
 
   <div class="container">
     <ul class="workout-list">
+
+      <figure *ngIf="loading" class="d-block mx-auto"><img width='100%' src="../../../assets/img/preloader.gif" alt="preloader" /></figure>
+
       <li class="workout" *ngFor="let ex of excersices; let i = index">
         <div class="workout-head">
           <h3 class="workout-name">{{ex.name | capitalize }}</h3>
-          <h4 class="workout-details">{{ex.sets}} x {{ex.reps}} {{ex.lastWeightUsed}} kg</h4>
+          <h4 class="workout-details">{{ex.sets}} x {{ex.reps}}<span *ngIf="ex.lastWeightUsed !== 0">, {{ex.lastWeightUsed}} kg</span></h4>
         </div>
         <div class="workout-body">
-          <div *ngFor="let n of numbers[i]" class="circle-container"><div (click)="triggerTracker(ex.restingTime, i, n); checkAllDone()" [ngClass]="{'done': checkSet(i,n)}" class="circle"></div></div>
+          <div *ngFor="let n of numbers[i]" class="circle-container"><div (click)="triggerTracker(ex.restingTime, i, n)" [ngClass]="{'done': checkSet(i,n)}" class="circle"></div></div>
         </div>
         <div class="workout-footer">
           <p class="difficulty">{{ex.difficulty | capitalize }}</p>
@@ -23,7 +26,7 @@
       <button type="button" *ngIf="!allDone" class="btn btn-secondary">Finish</button>
       <button type="button" *ngIf="allDone" (click)="finish()" class="btn btn-secondary save-btn finish-btn">Finish</button>
       <button type="button" (click)="editWorkout()" class="btn btn-secondary save-btn">Edit workout</button>
-      <button type="button" (click)="cancel()" class="btn btn-outline-secondary">Quit</button>
+      <button type="button" (click)="checkAll()" class="btn btn-outline-secondary">Check all</button>
     </div>
   </div>
 </div>

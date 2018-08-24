@@ -71,6 +71,17 @@ nav .navbar-toggler {
     color: green;
 }
 
+.home-tracking-text {
+  display: inline-block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.home-tracking-text + button {
+  float: right;
+  margin-top: 1.5rem;
+}
+
 .home-strong {
     text-transform: capitalize;
     font-style: italic;
@@ -305,6 +316,7 @@ nav .navbar-toggler {
   left: 0;
   text-align: center;
   line-height: 10vw;
+  z-index: 99999999999;
 }
 
 .alert.success-alert {

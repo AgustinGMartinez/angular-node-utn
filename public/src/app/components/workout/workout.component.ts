@@ -13,14 +13,12 @@ import { TrackerService } from '../../services/tracker.service';
 export class WorkoutComponent implements OnInit, OnDestroy {
 
   id:string = '';
-
   workout:any = {}
-
   excersices:any[] = [];
-
   numbers:any[] = [];
-
   allDone:boolean = false;
+  loading:boolean = true;
+
 
   constructor(public api:apiService,
     private activatedRoute:ActivatedRoute,
@@ -37,8 +35,8 @@ export class WorkoutComponent implements OnInit, OnDestroy {
           if (this.tracker.tracking && this.id === this.tracker.id) {
             this.excersices = this.tracker.excersices;
             this.numbers = this.tracker.workoutNumbers;
-          }
-          else {
+            this.checkAllDone();
+          } else {
             this.api.getExcersices(data => {
               let i = -1;
               for (let ex of data) {
@@ -57,14 +55,20 @@ export class WorkoutComponent implements OnInit, OnDestroy {
           }
         });
     });
+    // removes loader
+    this.loading = false;
   }
 
   registerSet(i, n) {
     if (this.excersices[i].done.includes(n+1)) {
       this.excersices[i].done.splice(this.excersices[i].done.indexOf(n+1),1);
+      this.checkAllDone();
+      return false;
     }
     else {
       this.excersices[i].done.push(n+1);
+      this.checkAllDone();
+      return true;
     }
   }
 
@@ -73,7 +77,6 @@ export class WorkoutComponent implements OnInit, OnDestroy {
   }
 
   checkAllDone() {
-      console.log("works")
       let readyToGo = true;
 
       for (let i in this.excersices) {
@@ -81,7 +84,6 @@ export class WorkoutComponent implements OnInit, OnDestroy {
       }
 
       this.allDone = readyToGo;
-
   }
 
   editWorkout() {
@@ -94,49 +96,53 @@ export class WorkoutComponent implements OnInit, OnDestroy {
     this.router.navigate(['excersice/edit',id]);
   }
 
-  cancel() {
-    if(confirm("You sure you want to quit and reset this workout?")) {
-      this.tracker.tracking = false;
-      this.tracker.stop();
-      this.location.back();
+  checkAll() {
+    if (confirm("Are you sure you want to mark all sets as finished?")) {
+      for (let excersice of this.excersices) {
+        excersice.done = [];
+
+        for (let i = 1; i <= excersice.sets; i++) {
+          excersice.done.push(i);
+        }
+      }
     }
+    this.tracker.save(true, this.id, this.excersices, this.numbers);
+    this.checkAllDone();
   }
 
-  triggerTracker(rest, i, n) {
-    if (this.excersices[i].done.includes(n+1)) {
-      this.registerSet(i, n);
-      return;
-    }
+  triggerTracker(restingTime, i, n) {
     if (this.tracker.id !== "" && this.tracker.id !== this.id && this.tracker.tracking) {
       alert("Finish or quit the started workout first!");
       return;
     }
-    this.tracker.stop();
-    this.tracker.tracking = true;
-    this.tracker.id = this.id;
-    this.tracker.timer.limit = rest;
+    // if user is removing a set done, we shouldn't restart the timer
+    if (!this.registerSet(i, n)) {
+      return;
+    }
+    this.tracker.resetTimer();
+    this.tracker.save(true, this.id, this.excersices, this.numbers);
+    this.tracker.update();
+    this.tracker.timer.limit = restingTime;
     this.tracker.timer.activated = true;
     this.tracker.timer.passed = 0;
-    this.tracker.init();
-    this.registerSet(i, n);
+    this.tracker.initTimer();
   }
 
   finish() {
-    this.tracker.tracking = false;
-    this.tracker.stop();
+    this.tracker.resetWorkout();
+    this.tracker.resetTimer();
+    this.tracker.update();
     let workout =  this.workout;
     workout.lastDone = Date.now();
-    console.log(workout);
     this.api.updateWorkout(this.id, workout, data => {
-      console.log(data);
       this.router.navigate(['home']);
     });
   }
 
   ngOnDestroy() {
     if (this.id === this.tracker.id) {
-      this.tracker.excersices = this.excersices;
-      this.tracker.workoutNumbers = this.numbers;
+      this.tracker.save(true, this.tracker.id, this.excersices, this.numbers);
+      this.tracker.update();
     }
   }
 }

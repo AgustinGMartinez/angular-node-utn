@@ -21,7 +21,7 @@ export class ViewTrackerComponent implements OnInit {
   }
 
   cancelTimer() {
-    this.tracker.stop();
+    this.tracker.resetTimer();
   }
 
 }
