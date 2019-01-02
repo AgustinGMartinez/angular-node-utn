@@ -76,6 +76,8 @@ export class EditExcersiceComponent implements OnInit {
 
     // update excersice info in the tracker
     if (this.tracker.tracking) {
+      // I shoud be using this instead:
+      //let ex = this.tracker.excersices.filter(ex => ex._id === this.id);
       for (let ex of this.tracker.excersices) {
         if (ex._id === this.id) {
           ex.name = this.excersice.name;
@@ -90,6 +92,7 @@ export class EditExcersiceComponent implements OnInit {
             temp.push(i);
           }
           this.tracker.workoutNumbers[this.id] = temp;
+          break;
         }
       }
     }

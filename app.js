@@ -7,7 +7,10 @@ var express  = require("express"),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     port = process.env.PORT || 3000,
-    path = require('path');
+    path = require('path'),
+    config = require('./config.js');
+
+require('dotenv').config();
 
 app.use(cors());
 
@@ -24,11 +27,14 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname,'public/dist/angular/index.html'));
 });
 
-routes = require('./routes/api')(app);
+apiRoutes = require('./routes/api')(app);
+authRoutes = require('./auth/authController')(app, config);
 
-let db = "mongodb://zhuclam:fjv2ibvgmkl147@ds139921.mlab.com:39921/agustin-utn" || "mongodb://localhost:27017/workouts";
+let prod_db = process.env.DB_HOST + "://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds139921.mlab.com:39921/" + process.env.DB_NAME;
 
-mongoose.connect(db ,{ useNewUrlParser: true }, function(err, res) {
+let db = (s=false) => s ? prod_db : "mongodb://localhost:27017/workouts";
+
+mongoose.connect(db(false) ,{ useNewUrlParser: true }, function(err, res) {
 	if(err) {
 		console.log('ERROR: connecting to Database. ' + err);
 	} else {
